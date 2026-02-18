@@ -3,11 +3,15 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
+import { s3Storage } from '@payloadcms/storage-s3'
 import sharp from 'sharp'
+import { Publications } from './collections/Publications'
+import { Blogs } from './collections/Blogs'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
-
+import { Gallery } from './collections/Gallery'
+import { Tags } from './collections/Tags'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -18,7 +22,10 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media],
+  serverURL: 'http://localhost:3000',
+  csrf: ['http://localhost:8080', 'http://localhost:3000'],
+  cors: ['http://localhost:8080', 'http://localhost:3000'],
+  collections: [Users, Media, Gallery, Publications, Blogs, Tags],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -30,5 +37,22 @@ export default buildConfig({
     },
   }),
   sharp,
-  plugins: [],
+  plugins: [
+    s3Storage({
+      collections: {
+        media: true,
+      },
+
+      bucket: process.env.S3_BUCKET || '',
+      config: {
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
+        },
+        region: process.env.S3_REGION,
+        endpoint: process.env.S3_ENDPOINT,
+        forcePathStyle: true,
+      },
+    }),
+  ],
 })

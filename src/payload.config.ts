@@ -23,8 +23,16 @@ export default buildConfig({
     },
   },
   serverURL: process.env.PAYLOAD_SERVER_URL,
-  csrf: ['https://sjmedspace-backend.vercel.app', 'https://www.sjmedspace.com'],
-  cors: ['https://sjmedspace-backend.vercel.app', 'https://www.sjmedspace.com'],
+  csrf: [
+    'https://sjmedspace-backend.vercel.app',
+    'https://www.sjmedspace.com',
+    'http://localhost:8080',
+  ],
+  cors: [
+    'https://sjmedspace-backend.vercel.app',
+    'https://www.sjmedspace.com',
+    'http://localhost:8080',
+  ],
   collections: [Users, Media, Gallery, Publications, Blogs, Tags],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

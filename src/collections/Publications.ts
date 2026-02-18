@@ -167,7 +167,10 @@ export const Publications: CollectionConfig = {
       min: 0,
       defaultValue: 0,
     },
-
+    {
+      name: 'content',
+      type: 'richText',
+    },
     {
       name: 'commentedBy',
       type: 'array',

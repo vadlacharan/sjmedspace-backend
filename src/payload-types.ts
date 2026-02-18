@@ -95,12 +95,8 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale: null;
-  globals: {
-    homepage: Homepage;
-  };
-  globalsSelect: {
-    homepage: HomepageSelect<false> | HomepageSelect<true>;
-  };
+  globals: {};
+  globalsSelect: {};
   locale: null;
   user: User;
   jobs: {
@@ -207,21 +203,6 @@ export interface Publication {
   title?: string | null;
   thumbnail?: (number | null) | Media;
   likeCount?: number | null;
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
   commentedBy?:
     | {
         user?: (number | null) | User;
@@ -440,7 +421,6 @@ export interface PublicationsSelect<T extends boolean = true> {
   title?: T;
   thumbnail?: T;
   likeCount?: T;
-  content?: T;
   commentedBy?:
     | T
     | {
@@ -531,110 +511,6 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "homepage".
- */
-export interface Homepage {
-  id: number;
-  hero: {
-    heading: string;
-    subheading?: string | null;
-    intro?: string | null;
-    profileImage?: (number | null) | Media;
-    primaryCTA?: {
-      label?: string | null;
-      link?: string | null;
-    };
-    secondaryCTA?: {
-      label?: string | null;
-      link?: string | null;
-    };
-  };
-  bioSection?: {
-    title?: string | null;
-    content?: {
-      root: {
-        type: string;
-        children: {
-          type: any;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    } | null;
-  };
-  focusAreas?:
-    | {
-        title?: string | null;
-        description?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  ctaSection?: {
-    title?: string | null;
-    description?: string | null;
-    buttonLabel?: string | null;
-    buttonLink?: string | null;
-  };
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "homepage_select".
- */
-export interface HomepageSelect<T extends boolean = true> {
-  hero?:
-    | T
-    | {
-        heading?: T;
-        subheading?: T;
-        intro?: T;
-        profileImage?: T;
-        primaryCTA?:
-          | T
-          | {
-              label?: T;
-              link?: T;
-            };
-        secondaryCTA?:
-          | T
-          | {
-              label?: T;
-              link?: T;
-            };
-      };
-  bioSection?:
-    | T
-    | {
-        title?: T;
-        content?: T;
-      };
-  focusAreas?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        id?: T;
-      };
-  ctaSection?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        buttonLabel?: T;
-        buttonLink?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

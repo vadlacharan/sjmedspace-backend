@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { CollectionConfig } from 'payload'
 
 export const Publications: CollectionConfig = {

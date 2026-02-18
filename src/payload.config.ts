@@ -22,7 +22,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  serverURL: 'http://localhost:3000',
+  serverURL: process.env.PAYLOAD_SERVER_URL,
   csrf: ['http://localhost:8080', 'http://localhost:3000'],
   cors: ['http://localhost:8080', 'http://localhost:3000'],
   collections: [Users, Media, Gallery, Publications, Blogs, Tags],

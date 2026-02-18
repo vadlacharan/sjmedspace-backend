@@ -166,17 +166,7 @@ export const Publications: CollectionConfig = {
       min: 0,
       defaultValue: 0,
     },
-    {
-      update: ({ req }) => {
-        if (!req || !req.user) {
-          return false
-        }
 
-        return req.user.role === 'admin'
-      },
-      name: 'content',
-      type: 'richText',
-    },
     {
       name: 'commentedBy',
       type: 'array',

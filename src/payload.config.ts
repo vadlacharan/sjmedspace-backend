@@ -26,12 +26,14 @@ export default buildConfig({
   csrf: [
     'https://sjmedspace-backend.vercel.app',
     'https://www.sjmedspace.com',
+    'https://sjmedspace.vercel.app',
     'http://localhost:8080',
   ],
   cors: [
     'https://sjmedspace-backend.vercel.app',
     'https://www.sjmedspace.com',
     'http://localhost:8080',
+      'https://sjmedspace.vercel.app',
   ],
   collections: [Users, Media, Gallery, Publications, Blogs, Tags],
   editor: lexicalEditor(),
